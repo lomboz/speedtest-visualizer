@@ -1,7 +1,7 @@
 #!/bin/sh
 
 TIMESTAMP=$(date +'%Y-%m-%d_%H-%M-%S')
-TARGET_DIR=/Users/haschneider/projekte/privat/speedtest-visualizer/data
+TARGET_DIR=../data
 
 echo "run speedtest on "$TIMESTAMP
 
