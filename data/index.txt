@@ -1,4 +1,0 @@
-speedtest_2020-05-29_21-04-12.json
-speedtest_2020-05-29_21-21-19.json
-speedtest_2020-05-29_21-36-17.json
-speedtest_2020-05-29_21-41-06.json
