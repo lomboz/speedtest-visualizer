@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    </head>
+    <body>
+        <canvas id="myChart"></canvas>
+
+        <script>
+            function loadFile(filePath) {
+                var result = null;
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", filePath, false);
+                xmlhttp.send();
+                if (xmlhttp.status==200) {
+                    result = xmlhttp.responseText;
+                }
+                return result;
+            }
+            var file = loadFile("data/index.txt")
+            const allLines = file.trim().split(/\r\n|\n/);
+            // Array mit Datumsangaben 
+            var labels = [];
+            var dataDownloadRate = [];
+            var dataUploadRate = [];
+
+            // Reading line by line
+            allLines.forEach((line) => {
+                var content = loadFile("data/"+line);
+                var jsonContent = JSON.parse(content);
+                var timestamp = new Date(jsonContent.timestamp);
+                
+                labels.push(timestamp.toLocaleString('de-DE'));
+                dataDownloadRate.push(jsonContent.download / 1024 / 1024);
+                dataUploadRate.push(jsonContent.upload  / 1024 / 1024);
+            });
+
+            
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+
+                // The data for our dataset
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Upload Rate',
+                        backgroundColor: 'rgb(0, 99, 132)',
+                        borderColor: 'rgb(0, 99, 132)',
+                        data: dataUploadRate
+                    },{
+                        label: 'Download Rate',
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: dataDownloadRate
+                    }]
+                },
+
+                // Configuration options go here
+                options: {}
+            });
+        </script>
+    </body>
+</html>
