@@ -23,9 +23,10 @@
             var labels = [];
             var dataDownloadRate = [];
             var dataUploadRate = [];
-
+            
             // Reading line by line
             allLines.forEach((line) => {
+                if(line != ''){
                 var content = loadFile("data/"+line);
                 if(content){
                     var jsonContent = JSON.parse(content);
@@ -35,7 +36,9 @@
                     dataDownloadRate.push(jsonContent.download / 1024 / 1024);
                     dataUploadRate.push(jsonContent.upload  / 1024 / 1024);
                 }
+            }
             });
+
              }
             
 
