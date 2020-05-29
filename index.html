@@ -17,6 +17,7 @@
                 return result;
             }
             var file = loadFile("data/index.txt")
+            if(file){
             const allLines = file.trim().split(/\r\n|\n/);
             // Array mit Datumsangaben 
             var labels = [];
@@ -26,14 +27,16 @@
             // Reading line by line
             allLines.forEach((line) => {
                 var content = loadFile("data/"+line);
-                var jsonContent = JSON.parse(content);
-                var timestamp = new Date(jsonContent.timestamp);
-                
-                labels.push(timestamp.toLocaleString('de-DE'));
-                dataDownloadRate.push(jsonContent.download / 1024 / 1024);
-                dataUploadRate.push(jsonContent.upload  / 1024 / 1024);
+                if(content){
+                    var jsonContent = JSON.parse(content);
+                    var timestamp = new Date(jsonContent.timestamp);
+                    
+                    labels.push(timestamp.toLocaleString('de-DE'));
+                    dataDownloadRate.push(jsonContent.download / 1024 / 1024);
+                    dataUploadRate.push(jsonContent.upload  / 1024 / 1024);
+                }
             });
-
+             }
             
 
             var ctx = document.getElementById('myChart').getContext('2d');
