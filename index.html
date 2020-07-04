@@ -4,6 +4,7 @@
     </head>
     <body>
         <canvas id="myChart"></canvas>
+        <canvas id="myChartUpload"></canvas>
 
         <script>
             function loadFile(filePath) {
@@ -51,20 +52,45 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Upload Rate',
-                        backgroundColor: 'rgb(0, 99, 132)',
-                        borderColor: 'rgb(0, 99, 132)',
-                        data: dataUploadRate
-                    },{
                         label: 'Download Rate',
                         backgroundColor: 'rgb(255, 99, 132)',
                         borderColor: 'rgb(255, 99, 132)',
-                        data: dataDownloadRate
+                        data: dataDownloadRate,
+                        pointStyle: 'circle',
+                        pointRadius: 10,
+                        pointBorderColor: 'rgba(0, 0, 0, 0.0)',
                     }]
                 },
 
                 // Configuration options go here
-                options: {}
+                options: {
+                    
+                }
+            });
+
+            var ctxUpload = document.getElementById('myChartUpload').getContext('2d');
+            var chart2 = new Chart(ctxUpload, {
+                // The type of chart we want to create
+                type: 'line',
+
+                // The data for our dataset
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Upload Rate',
+                        backgroundColor: 'rgb(0, 99, 132)',
+                        borderColor: 'rgb(0, 99, 132)',
+                        data: dataUploadRate,
+                        pointStyle: 'circle',
+                        pointRadius: 10,
+                        pointBorderColor: 'rgba(0, 0, 0, 0.1)',
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    
+                }
             });
         </script>
     </body>
