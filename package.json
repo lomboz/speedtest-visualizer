@@ -10,9 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "g": "^2.0.1",
-    "local-web-server": "^4.2.0"
+    "local-web-server": "^5.3.0"
   },
   "devDependencies": {
-    "lws": "^3.1.0"
+    "lws": "^4.1.2"
   }
 }
